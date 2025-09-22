@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Armazenamento na Nuvem — Fotos e Vídeos (100000 GB)</title>
+<style>
+:root{--bg:#0f1724;--card:#0b1220;--muted:#9aa4b2;--accent:#06b6d4}
+body{font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;margin:0;background:linear-gradient(180deg,#071024,#0b1220);color:#e6eef6}
+.wrap{max-width:980px;margin:32px auto;padding:20px}
+header{display:flex;align-items:center;justify-content:space-between}
+h1{margin:0;font-size:20px}
+.card{background:rgba(255,255,255,0.03);padding:18px;border-radius:12px;box-shadow:0 6px 18px rgba(2,6,23,0.6)}
+.drop{border:2px dashed rgba(255,255,255,0.06);padding:30px;text-align:center;border-radius:10px;cursor:pointer}
+.muted{color:var(--muted);font-size:14px}
+.files{margin-top:14px}
+.file-row{display:flex;align-items:center;gap:12px;padding:8px 10px;border-radius:8px;margin-bottom:8px;background:rgba(255,255,255,0.02)}
+.thumb{width:72px;height:48px;object-fit:cover;border-radius:6px;background:#091827}
+.meta{flex:1}
+progress{width:100%;height:10px;border-radius:6px;background:transparent}
+.actions{display:flex;gap:8px}
+button{background:var(--accent);border:none;color:#022;padding:8px 12px;border-radius:8px;cursor:pointer}
+button.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
+footer{margin-top:18px;color:var(--muted);font-size:13px}
+.small{font-size:13px;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<h1>Armazenamento na Nuvem — Fotos & Vídeos (100000 GB)</h1>
+<div class="small">Interface client-side — conectar a um backend para enviar aos provedores (S3 / GCS / Azure)</div>
+</header>
+
+
+<section class="card" style="margin-top:18px">
+<div id="drop" class="drop">
+<div style="font-weight:600">Arraste e solte fotos e vídeos aqui</div>
+<div class="muted">Ou clique para selecionar arquivos (suporta upload em lote, até o seu limite contratado — ex: 100000 GB)</div>
+</div>
+
+
+<div style="margin-top:12px;display:flex;gap:8px">
+<input id="fileInput" type="file" multiple accept="image/*,video/*" style="display:none">
+<button id="selectBtn" class="ghost">Selecionar arquivos</button>
+<button id="startAll">Enviar todos</button>
+<button id="clearBtn" class="ghost">Limpar lista</button>
+</div>
+
+
+<div class="files" id="files"></div>
+
+
+<footer>
+<div><strong>Dica:</strong> este é apenas o frontend. Para armazenar realmente na nuvem (100000 GB = 100 TB) você precisa configurar um bucket no provedor desejado (AWS S3 / Google Cloud Storage / Azure Blob). Veja instruções comentadas no topo do arquivo HTML (linhas de comentário) para exemplos de backend e segurança (presigned URLs, políticas CORS, limites e faturamento).</div>
+</footer>
+</section>
+/*
